@@ -86,13 +86,16 @@ repositories {
             includeGroup "curse.maven"
         }
     }
+    flatDir {
+        dirs "localMods"
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-    implementation fg.deobf("curse.maven:create-328085:3536025")
-    implementation fg.deobf("curse.maven:flywheel-486392:3535459")
+    implementation fg.deobf("create:create:${create_version}")
+    implementation fg.deobf("flywheel:flywheel:${flywheel_version}")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
