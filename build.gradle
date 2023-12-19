@@ -79,7 +79,6 @@ repositories {
     exclusiveContent {
         forRepository {
             maven {
-                name "Curse Maven"
                 url "https://cursemaven.com"
             }
         }
