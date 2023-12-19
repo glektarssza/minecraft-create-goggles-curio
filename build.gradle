@@ -19,7 +19,7 @@ apply plugin: "org.spongepowered.mixin"
 
 version = "${mod_version}"
 group = "${mod_group}.${mod_id}"
-archivesBaseName = "${mod_id}-${minecraft_version}-${mod_version}"
+archivesBaseName = "${mod_id}-${minecraft_version}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
