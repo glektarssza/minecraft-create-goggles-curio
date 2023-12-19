@@ -5,20 +5,13 @@ buildscript {
             name = 'Forge'
             url = 'https://maven.minecraftforge.net/'
         }
-        maven {
-            name = 'Create'
-            url = 'https://maven.tterrag.com/'
-        }
-        maven {
-            name = 'Curios'
-            url = "https://maven.theillusivec4.top/"
-        }
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7.+'
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
@@ -73,6 +66,17 @@ minecraft {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven {
+        name = 'Create'
+        url = 'https://maven.tterrag.com/'
+    }
+    maven {
+        name = 'Curios'
+        url = "https://maven.theillusivec4.top/"
+    }
+}
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
