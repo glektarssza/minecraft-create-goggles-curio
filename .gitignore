@@ -45,3 +45,4 @@ localMods/
 # Aritfacts #
 ## Gradle ##
 build/
+bin/
