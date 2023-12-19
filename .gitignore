@@ -33,3 +33,11 @@ tags
 
 # Logs #
 *.log*
+
+# Caches #
+## Gradle ##
+.gradle/
+
+# Aritfacts #
+## Gradle ##
+build/
