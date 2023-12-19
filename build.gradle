@@ -79,12 +79,12 @@ repositories {
     exclusiveContent {
         forRepository {
             maven {
-                name = "Curse Maven"
-                url = "https://cursemaven.com"
+                name "Curse Maven"
+                url "https://cursemaven.com"
             }
         }
         filter {
-            includeGroup = "curse.maven"
+            includeGroup "curse.maven"
         }
     }
 }
