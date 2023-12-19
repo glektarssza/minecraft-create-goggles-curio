@@ -12,3 +12,15 @@ authors = "G'lek Tarssza"
 description = '''
 A mod for Minecraft 1.16.5 that adds the Create Goggles to the Curios head slot.
 '''
+[[dependencies.creategogglescurio]]
+modId = "create"
+mandatory = true
+versionRange = "[0.3,0.4)"
+ordering = "NONE"
+side = "BOTH"
+[[dependencies.creategogglescurio]]
+modId = "curios"
+mandatory = true
+versionRange = "[4.1,0.5)"
+ordering = "NONE"
+side = "BOTH"
