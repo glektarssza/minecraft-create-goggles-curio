@@ -17,10 +17,10 @@ modId = "create"
 mandatory = true
 versionRange = "[v0.3.2g,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 [[dependencies.creategogglescurio]]
 modId = "curios"
 mandatory = true
 versionRange = "[1.16.5-4.0.5.3,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
