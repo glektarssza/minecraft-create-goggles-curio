@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.simibubi.create.Create;
+import com.simibubi.create.content.contraptions.goggles.GogglesItem;
 import com.simibubi.create.content.contraptions.goggles.GoggleOverlayRenderer;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.util.ICuriosHelper;
@@ -44,7 +44,9 @@ public class CreateGogglesCurio {
     public boolean GogglesInCurioSlot() {
         Minecraft mc = Minecraft.getInstance();
         LivingEntity player = mc.player;
-        ICuriosHelper curios = CuriosApi.getCuriosHelper();
-        return curios.findCurio(player, Create.ID + ":goggles", 0).isPresent();
+        ICuriosHelper helper = CuriosApi.getCuriosHelper();
+        return helper.findCurio(player, "head", 0)
+                .map((slotResult) -> slotResult.getStack().getItem() instanceof GogglesItem)
+                .orElse(false);
     }
 }
