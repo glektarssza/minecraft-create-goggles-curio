@@ -15,12 +15,12 @@ A mod for Minecraft 1.16.5 that adds the Create Goggles to the Curios head slot.
 [[dependencies.creategogglescurio]]
 modId = "create"
 mandatory = true
-versionRange = "[0.3,0.4)"
+versionRange = "[v0.3.2g,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.creategogglescurio]]
 modId = "curios"
 mandatory = true
-versionRange = "[4.1,5.0)"
+versionRange = "[1.16.5-4.0.5.3,)"
 ordering = "NONE"
 side = "BOTH"
