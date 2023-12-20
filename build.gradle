@@ -27,7 +27,6 @@ java.withJavadocJar()
 
 minecraft {
     mappings channel: "official", version: "${mappings_version}"
-    accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
     runs {
         client {
             workingDirectory project.file("run")
@@ -99,9 +98,7 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     implementation fg.deobf("create:create:${create_version}")
-    implementation fg.deobf("flywheel:flywheel:${flywheel_version}")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
