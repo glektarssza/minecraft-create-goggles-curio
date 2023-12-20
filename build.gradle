@@ -8,14 +8,12 @@ buildscript {
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "6.+", changing: true
-        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7.+"
     }
 }
 
 apply plugin: "net.minecraftforge.gradle"
 apply plugin: "eclipse"
 apply plugin: "maven-publish"
-apply plugin: "org.spongepowered.mixin"
 
 version = "${mod_version}"
 group = "${mod_group}.${mod_id}"
@@ -32,8 +30,6 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
-            property "mixin.env.remapRefMap", "true"
-            property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 expandedgamerules {
                     source sourceSets.main
@@ -103,14 +99,6 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
 
-mixin {
-    add sourceSets.main, "mixins.${mod_id}.refmap.json"
-    config "mixins.${mod_id}.json"
-
-    debug.verbose = true
-    debug.export = true
-}
-
 processResources {
     def expandProps = [
             "mod_version": mod_version,
@@ -130,7 +118,7 @@ processResources {
             "mod_credits": mod_credits
     ]
 
-    filesMatching(['pack.mcmeta', 'META-INF/mods.toml', '*.mixins.json']) {
+    filesMatching(['pack.mcmeta', 'META-INF/mods.toml']) {
         expand expandProps
     }
     inputs.properties(expandProps)
@@ -142,8 +130,6 @@ jar {
     }
     manifest {
         attributes([
-            "TweakcClass": "org.spongepowered.asm.launch.MixinTweaker",
-            "MixinConfigs": "mixins.${mod_id}.json",
             "FMCorePluginContainsFMLMod": "true",
             "Specification-Title": "${mod_name}",
             "Specification-Vendor": "${mod_author}",
