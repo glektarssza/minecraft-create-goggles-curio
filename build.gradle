@@ -71,7 +71,6 @@ sourceSets.main.resources { srcDir "src/generated/resources" }
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = 'UTF-8'
-    it.options.getRelease().set(8)
 }
 
 repositories {
