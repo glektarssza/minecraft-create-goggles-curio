@@ -1,0 +1,11 @@
+{
+    "homepage": "https://github.com/glektarssza/minecraft-create-goggles-curio",
+    "1.16.5": {
+        "0.0.1": "Initial release.",
+        "0.0.2": "Added a datapack to add the Engineer's Goggles from Create into the Curios head slot tag group."
+    },
+    "promos": {
+        "1.16.5-latest": "0.0.2",
+        "1.16.5-recommended": "0.0.2"
+    }
+}
