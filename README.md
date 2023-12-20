@@ -28,10 +28,8 @@ should get you up and running.
 2. Download the following mods and place their JAR files into the newly created
    directory:
     * Create v0.3.2g - [link](https://www.curseforge.com/minecraft/mc-mods/create/files/3536025)
-    * Flywheel v0.2.5 - [link](https://www.curseforge.com/minecraft/mc-mods/flywheel/files/3535459)
 3. Ensure the downloaded mods have file names matching the following patterns:
     * Create - `create-mc1.16.5_v0.3.2g`
-    * Flywheel - `flywheel-1.16-0.2.5`
 
 ### Installing the Java JDK ###
 
