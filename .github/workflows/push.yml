@@ -27,6 +27,10 @@ jobs:
       - id: setup-gradle
         name: Setup Gradle
         uses: gradle/gradle-build-action@v2.11.1
+      - id: download-dependencies
+        name: Download dependencies
+        run: |
+          wget --quiet --directory-prefix=localMods https://mediafilez.forgecdn.net/files/3536/25/create-mc1.16.5_v0.3.2g.jar
       - id: build
         name: Build
         run: ./gradlew build
