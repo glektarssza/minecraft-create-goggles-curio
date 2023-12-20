@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath group: "net.minecraftforge.gradle", name: "ForgeGradle", version: "6.+", changing: true
-        classpath group: "org.spongepowered", name: "mixingradle", version: "0.7.+"
+        classpath group: "org.spongepowered", name: "mixingradle", version: "0.8.+"
     }
 }
 
@@ -106,6 +106,31 @@ mixin {
 
     debug.verbose = true
     debug.export = true
+}
+
+processResources {
+    def expandProps = [
+            "mod_version": mod_version,
+            "mod_group": mod_group,
+            "minecraft_version": minecraft_version,
+            "forge_version": forge_version,
+            "forge_loader_version_range": forge_loader_version_range,
+            "forge_version_range": forge_version_range,
+            "minecraft_version_range": minecraft_version_range,
+            "curios_version_range": curios_version_range,
+            "create_version_range": create_version_range,
+            "mod_id": mod_id,
+            "mod_name": mod_name,
+            "mod_description": mod_description,
+            "mod_author": mod_author,
+            "mod_license": mod_license,
+            "mod_credits": mod_credits
+    ]
+
+    filesMatching(['pack.mcmeta', 'META-INF/mods.toml', '*.mixins.json']) {
+        expand expandProps
+    }
+    inputs.properties(expandProps)
 }
 
 jar {
