@@ -2,7 +2,15 @@ package com.glektarssza.creategogglescurio;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
 
@@ -33,15 +41,46 @@ public class CreateGogglesCurio {
      * Create a new instance.
      */
     public CreateGogglesCurio() {
-        GoggleOverlayRenderer.registerCustomGoggleCondition(new Supplier<Boolean>() {
-            @Override
-            public Boolean get() {
-                return GogglesInCurioSlot();
-            }
-        });
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::Init);
     }
 
-    public boolean GogglesInCurioSlot() {
+    /**
+     * Initialize the mod.
+     *
+     * @param event The event to handle.
+     */
+    public void Init(FMLCommonSetupEvent event) {
+        LOGGER.info("Initializing CreateGogglesCurio...");
+        if (FMLEnvironment.dist.isDedicatedServer()) {
+            LOGGER.warn("CreateGogglesCurio only provides a datapack for servers!");
+            LOGGER.warn("Skipping initialization!");
+            return;
+        }
+        if (!ForgeRegistries.ITEMS.containsKey(new ResourceLocation("create", "goggles"))) {
+            LOGGER.error("Could not find Create Engineer's Goggles, is Create is installed?");
+            LOGGER.error("Disabling CreateGogglesCurio!");
+            return;
+        }
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::RegisterGoggleOverlayPredicate);
+        LOGGER.info("Finished initializing CreateGogglesCurio!");
+    }
+
+    /**
+     * Register the predicate for the goggles overlay.
+     */
+    public void RegisterGoggleOverlayPredicate() {
+        GoggleOverlayRenderer.registerCustomGoggleCondition(this::AreGogglesInCurioSlot);
+    }
+
+    /**
+     * Check if the player has the Engineer's Goggles from Create in the "head"
+     * curio slot.
+     *
+     * @return `true` if the player has the Engineer's Goggles from Create in
+     *         the "head" curio slot; `false` otherwise.
+     */
+    @OnlyIn(Dist.CLIENT)
+    public boolean AreGogglesInCurioSlot() {
         Minecraft mc = Minecraft.getInstance();
         LivingEntity player = mc.player;
         ICuriosHelper helper = CuriosApi.getCuriosHelper();
