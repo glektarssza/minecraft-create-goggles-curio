@@ -26,7 +26,7 @@ Sessionx.vim
 *~
 
 ### Auto-generated Tag Files ###
-tags
+/tags
 
 ### Undo Persistence ###
 [._]*.un~
