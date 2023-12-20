@@ -3,7 +3,7 @@ loaderVersion = "${forge_loader_version_range}"
 license = "${mod_license}"
 [[mods]]
 modId = "${mod_id}"
-version = "${file.jarVersion}"
+version = "${mod_version}"
 displayName = "${mod_name}"
 updateJSONURL = "https://raw.githubusercontent.com/glektarssza/minecraft-create-goggles-curio/master/forge-update.json"
 displayURL = "https://github.com/glektarssza/minecraft-create-goggles-curio"
