@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Supplier;
@@ -47,6 +48,11 @@ public class CreateGogglesCurio {
      */
     public void Init(FMLCommonSetupEvent event) {
         LOGGER.info("Initializing CreateGogglesCurio...");
+        if (FMLEnvironment.dist.isDedicatedServer()) {
+            LOGGER.warn("CreateGogglesCurio only provides a datapack for servers!");
+            LOGGER.warn("Skipping initialization!");
+            return;
+        }
         if (!ForgeRegistries.ITEMS.containsKey(new ResourceLocation("create", "goggles"))) {
             LOGGER.error("Could not find Create Engineer's Goggles, is Create is installed?");
             LOGGER.error("Disabling CreateGogglesCurio!");
