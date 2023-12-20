@@ -3,6 +3,9 @@ package com.glektarssza.creategogglescurio;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -58,13 +61,15 @@ public class CreateGogglesCurio {
             LOGGER.error("Disabling CreateGogglesCurio!");
             return;
         }
-        GoggleOverlayRenderer.registerCustomGoggleCondition(new Supplier<Boolean>() {
-            @Override
-            public Boolean get() {
-                return AreGogglesInCurioSlot();
-            }
-        });
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> this::RegisterGoggleOverlayPredicate);
         LOGGER.info("Finished initializing CreateGogglesCurio!");
+    }
+
+    /**
+     * Register the predicate for the goggles overlay.
+     */
+    public void RegisterGoggleOverlayPredicate() {
+        GoggleOverlayRenderer.registerCustomGoggleCondition(this::AreGogglesInCurioSlot);
     }
 
     /**
@@ -74,6 +79,7 @@ public class CreateGogglesCurio {
      * @return `true` if the player has the Engineer's Goggles from Create in
      *         the "head" curio slot; `false` otherwise.
      */
+    @OnlyIn(Dist.CLIENT)
     public boolean AreGogglesInCurioSlot() {
         Minecraft mc = Minecraft.getInstance();
         LivingEntity player = mc.player;
