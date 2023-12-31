@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew build
       - id: upload-artifacts
         name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: build/libs
@@ -64,7 +64,7 @@ jobs:
         uses: gradle/gradle-build-action@v2.11.1
       - id: download-artifacts
         name: Download built artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: staging
